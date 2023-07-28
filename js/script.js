@@ -30,8 +30,9 @@ const loop = setInterval(() => {
     mario.style.width = '75px';
     mario.style.marginLeft = '50px';
 
-
     clearInterval(loop);
+    
+    location.href='game-over.html'
   }
 }, 10);
 
