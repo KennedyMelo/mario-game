@@ -3,13 +3,16 @@ const pipe = document.querySelector('.pipe');
 const score = document.querySelector('.score');
 
 let accumulatedPoints = 0;
-const jump = () => {
+let onAir = false;
+
+const jump = (event) => {
   mario.classList.add('jump');
-  
+  onAir = true;
+
   setTimeout(() => {
     
     mario.classList.remove('jump');
-  
+    onAir = false
   }, 500);
 
 }
@@ -45,4 +48,9 @@ const loop = setInterval(() => {
   }
 }, 10);
 
-document.addEventListener('keydown', jump);
+document.addEventListener('keydown', event =>{
+  
+  if(onAir && event.key !== 'ArrowUp' && event.key !== 'w') return;
+  jump();
+
+});
