@@ -47,11 +47,14 @@ body{
   animation: clouds-animation 20s infinite linear;
 }
 
-.score {
+.score, .bestScore {
   position: absolute;
   color: rgb(7, 7, 193);
   font-size: 30px;
   right: 80px;
+}
+.bestScore{
+  left: 25px;
 }
 
 @keyframes pipe-animation {

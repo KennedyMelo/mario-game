@@ -1,6 +1,7 @@
 const mario = document.querySelector('.mario');
 const pipe = document.querySelector('.pipe');
 const score = document.querySelector('.score');
+const bestScoreElement = document.querySelector('.bestScore');
 
 let accumulatedPoints = 0;
 let onAir = false;
@@ -14,8 +15,29 @@ const jump = (event) => {
     mario.classList.remove('jump');
     onAir = false
   }, 500);
-
 }
+
+const updateScore = (accumulatedPoints) => {
+
+  let score = Math.floor(accumulatedPoints);
+  localStorage.setItem('score', score);
+  let bestScore = localStorage.getItem('bestScore');
+  
+  if(bestScore){
+    bestScore = Number(bestScore);
+    if(score > bestScore){
+      bestScore = score;
+    }
+  } else{
+    bestScore = score;
+  }
+
+  bestScoreElement.innerHTML = `Best score: ${bestScore}`;
+  localStorage.setItem('bestScore', bestScore);
+  
+}
+
+updateScore(0);
 
 const loop = setInterval(() => {
   
@@ -26,6 +48,7 @@ const loop = setInterval(() => {
   accumulatedPoints += 0.1;
   score.innerHTML = `Score: ${Math.floor(accumulatedPoints)}`;
 
+  //death conditional
   if (pipePosition <= 120 && pipePosition > 0 && marioPosition < 80) {
 
     pipe.style.animation = 'none';
@@ -40,8 +63,11 @@ const loop = setInterval(() => {
 
     clearInterval(loop);
     
+    updateScore(accumulatedPoints);
+    
     setTimeout(() => {
-      localStorage.setItem('score', Math.floor(accumulatedPoints));
+      
+      
       location.href='game-over.html'
     }, 1000)
     

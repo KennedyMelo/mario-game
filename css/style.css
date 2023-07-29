@@ -49,7 +49,8 @@ a:hover{
   
 }
 
-.score {
+.score, .bestScore {
   font-size: 20px;
   font-weight: 700;
+  padding: 5px;
 }
