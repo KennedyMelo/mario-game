@@ -32,7 +32,10 @@ const loop = setInterval(() => {
 
     clearInterval(loop);
     
-    location.href='game-over.html'
+    setTimeout(() => {
+      location.href='game-over.html'
+    }, 1000)
+    
   }
 }, 10);
 
