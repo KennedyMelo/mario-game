@@ -50,7 +50,8 @@ const loop = setInterval(() => {
 
 document.addEventListener('keydown', event =>{
   
-  if(onAir && event.key !== 'ArrowUp' && event.key !== 'w') return;
-  jump();
-
+  if(!onAir && (event.key === 'ArrowUp' || event.key === 'w')){
+    jump();
+  }
+  
 });
