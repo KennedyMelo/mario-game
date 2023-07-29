@@ -41,9 +41,17 @@ body{
 }
 
 .clouds {
+  top: 30px;
   position: absolute;
   width: 450px;
   animation: clouds-animation 20s infinite linear;
+}
+
+.score {
+  position: absolute;
+  color: rgb(7, 7, 193);
+  font-size: 30px;
+  right: 80px;
 }
 
 @keyframes pipe-animation {

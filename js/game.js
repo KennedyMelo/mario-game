@@ -1,6 +1,8 @@
 const mario = document.querySelector('.mario');
 const pipe = document.querySelector('.pipe');
+const score = document.querySelector('.score');
 
+let accumulatedPoints = 0;
 const jump = () => {
   mario.classList.add('jump');
   
@@ -17,6 +19,9 @@ const loop = setInterval(() => {
   const pipePosition = pipe.offsetLeft;
   // + -> convert string to number
   const marioPosition = +window.getComputedStyle(mario).bottom.replace('px', '');
+
+  accumulatedPoints += 0.1;
+  score.innerHTML = `Score: ${Math.floor(accumulatedPoints)}`;
 
   if (pipePosition <= 120 && pipePosition > 0 && marioPosition < 80) {
 
