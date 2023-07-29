@@ -38,6 +38,7 @@ const loop = setInterval(() => {
     clearInterval(loop);
     
     setTimeout(() => {
+      localStorage.setItem('score', Math.floor(accumulatedPoints));
       location.href='game-over.html'
     }, 1000)
     
