@@ -6,15 +6,19 @@ const bestScoreElement = document.querySelector('.bestScore');
 let accumulatedPoints = 0;
 let onAir = false;
 
-const jump = (event) => {
-  mario.classList.add('jump');
-  onAir = true;
-
+const remove_jump = (time) => {
   setTimeout(() => {
     
     mario.classList.remove('jump');
     onAir = false
-  }, 500);
+  }, time);
+}
+
+const jump = (event) => {
+  mario.classList.add('jump');
+  onAir = true;
+
+  remove_jump(500);
 }
 
 const updateScore = (accumulatedPoints) => {
@@ -75,7 +79,9 @@ const loop = setInterval(() => {
 }, 10);
 
 document.addEventListener('keydown', event =>{
-  
+  if(onAir && (event.key === 'ArrowDown' || event.key === 's')){
+    remove_jump(20);
+  }
   if(!onAir && (event.key === 'ArrowUp' || event.key === 'w')){
     jump();
   }
