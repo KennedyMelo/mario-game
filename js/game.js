@@ -2,9 +2,11 @@ const mario = document.querySelector('.mario');
 const pipe = document.querySelector('.pipe');
 const score = document.querySelector('.score');
 const bestScoreElement = document.querySelector('.bestScore');
+const coin = document.querySelector('.coin')
 
 let accumulatedPoints = 0;
 let onAir = false;
+let existCoin = true;
 
 const remove_jump = (time) => {
   setTimeout(() => {
@@ -46,11 +48,27 @@ updateScore(0);
 const loop = setInterval(() => {
   
   const pipePosition = pipe.offsetLeft;
+  const coinPositionLeft = coin.offsetLeft;
+  const coinPositionRight = +window.getComputedStyle(coin).right.replace('px', '');
+  
   // + -> convert string to number
   const marioPosition = +window.getComputedStyle(mario).bottom.replace('px', '');
 
   accumulatedPoints += 0.1;
   score.innerHTML = `Score: ${Math.floor(accumulatedPoints)}`;
+
+  //reappear the coin
+  console.log(coinPositionRight)
+  if(coinPositionRight <= -60){
+    coin.style.width='60px';
+    existCoin = true;
+  }
+  //catch coin conditional
+  if (existCoin && coinPositionLeft <= 120 && marioPosition >= 110){
+    coin.style.width='0px';
+    accumulatedPoints +=30;
+    existCoin = false;
+  }
 
   //death conditional
   if (pipePosition <= 120 && pipePosition > 0 && marioPosition < 80) {

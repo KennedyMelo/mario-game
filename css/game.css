@@ -47,6 +47,13 @@ body{
   animation: clouds-animation 20s infinite linear;
 }
 
+.coin{
+  position: absolute;
+  width: 60px;
+  bottom: 200px;
+  animation: coin-animation 2.3s infinite linear;
+}
+
 .score, .bestScore {
   position: absolute;
   color: rgb(7, 7, 193);
@@ -92,7 +99,17 @@ body{
 
 @keyframes clouds-animation {
   from {
-    right: -550px;
+    right: -450px;
+  }
+
+  to {
+    right: 100%;
+  }
+}
+
+@keyframes coin-animation {
+  from {
+    right: -460px;
   }
 
   to {
