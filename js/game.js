@@ -2,7 +2,8 @@ const mario = document.querySelector('.mario');
 const pipe = document.querySelector('.pipe');
 const score = document.querySelector('.score');
 const bestScoreElement = document.querySelector('.bestScore');
-const coin = document.querySelector('.coin')
+const coin = document.querySelector('.coin');
+const scoreCoin = document.querySelector('.scoreCoin');
 
 let accumulatedPoints = 0;
 let onAir = false;
@@ -46,7 +47,11 @@ const updateScore = (accumulatedPoints) => {
 updateScore(0);
 
 const loop = setInterval(() => {
-  
+  if(!existCoin){
+    scoreCoin.style.display = 'block'
+  } else{
+    scoreCoin.style.display = 'none'
+  }
   const pipePosition = pipe.offsetLeft;
   const coinPositionLeft = coin.offsetLeft;
   const coinPositionRight = +window.getComputedStyle(coin).right.replace('px', '');
@@ -88,7 +93,6 @@ const loop = setInterval(() => {
     updateScore(accumulatedPoints);
     
     setTimeout(() => {
-      
       
       location.href='game-over.html'
     }, 1000)
